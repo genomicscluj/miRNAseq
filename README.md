@@ -1,13 +1,14 @@
-# A549 miRNA-Seq Pipeline (Ion Torrent / CLC) — README
+# miRNA-Seq - basic analysis pipeline (Ion Torrent) — README
 
-A professional, end-to-end **R** pipeline for miRNA differential expression analysis from Ion Torrent / CLC exports (“grouped on mature” CSVs).  
+A simple, end-to-end **R** pipeline for miRNA differential expression analysis from Ion Torrent exports.  
 It builds a unified count matrix, performs QC, normalization, descriptive DE (or DESeq2 if replicates exist), generates standard plots, and exports an integrated log2FC heatmap across contrasts.
 
+To note: was developed for an A549 LC cell lines sequencing experiment, disregard hard-coding related to this research question. 
 ---
 
 ## Features
 
-- Auto-ingests multiple CLC/Ion CSVs and constructs a **counts matrix** (miRNA × samples).
+- Auto-ingests multiple CSVs and constructs a **counts matrix** (miRNA × samples).
 - **QC**: library sizes, sample–sample correlation heatmap, PCA (VST).
 - **Filtering** (low counts), **normalization** (edgeR TMM; DESeq2 VST/rlog).
 - **Contrasts**:
@@ -53,7 +54,7 @@ Rscript pipeline_miRNA_A549.R
 
 ## Input expectations
 
-- **CLC/Ion “grouped on mature” CSVs** containing columns:
+- **“grouped on mature” CSVs** containing columns:
   - `Name` (miRNA symbol; e.g., `hsa-miR-21-5p` / `let-7a-1`…)
   - `Total` (preferred) or `Expression values` (fallback) as counts
 - The **sample label** is parsed from the filename text in square brackets `[ ... ]` by default (adjust `extract_label()` if needed).
@@ -147,14 +148,14 @@ results_A549/
 
 ## License & citation
 
-- License: MIT (recommendation; adjust to your preference).
+- License: MIT.
 - If this pipeline supports a publication, cite **DESeq2** and **edgeR** appropriately.
 
 ---
 
 ## Contact
 
-- Maintainer: *Your Name*  
+- Maintainer: *Stefan Strilciuc*  
 - Issues: open a GitHub issue with **sessionInfo()**, example filenames, and a short log excerpt.
 
 ---
